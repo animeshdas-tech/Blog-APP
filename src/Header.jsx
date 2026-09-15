@@ -36,7 +36,7 @@ function Header() {
     return (
         <header className='md:py-2'>
             <nav className='bg-white w-11/12 mx-auto flex justify-between'>
-                <div className='flex my-auto md:w-fit w-1/2'>
+                <div className='flex my-auto md:w-fit'>
                     <div className=''>
                         <img src='/mindScroll.svg' alt="Logo" className="lg:size-16 md:size-12 size-10 pr-1" />
                     </div>
