@@ -12,15 +12,23 @@ export class Survice{
         this.database=getDatabase(this.app)
         this.storage=getStorage(this.app)
     }
-    async createPost({userId, name, email, imageUrl}){
+    
+    // async createId(userId){
+    //     const postRef=DBRef(this.database, `users/${userId}/posts`)
+    //     return push(postRef)
+    // }
+    async createPost(userId,{slug, title, content, featuredimage}){
         try {
-            const postRef=DBRef(this.database, `users/${userId}/posts`)
-            const newRef=push(postRef)
-            await set(newRef,{
-                username:name,
-                email:email,
-                profile_picture:imageUrl
+            const postRef=push(DBRef(this.database, `users/${userId}/posts`))
+            await set(postRef,{
+                slug:slug,
+                title:title,
+                content:content,
+                featuredimage:featuredimage,
+                uid:userId,
+                id:postRef.key
             })
+            return postRef.key
         } catch (error) {
             throw error   
         }
@@ -28,6 +36,7 @@ export class Survice{
     async updatePost(userId, updatedPost, postId){
         try {
             await update(DBRef(this.database, `users/${userId}/posts/${postId}`), updatedPost)
+            return true
         } catch (error) {
             throw error
         }
@@ -35,7 +44,16 @@ export class Survice{
     async getPosts(userId){
         try {
             const snapshot= await get(DBRef(this.database, `users/${userId}/posts`))
-            return snapshot.val()
+            return Object.values(snapshot.val())
+        } catch (error) {
+            console.log(error);
+            return false
+        }
+    }
+    async getAllPosts(){
+        try {
+            const snapshot= await get(DBRef(this.database, `users`))
+            return Object.values(snapshot.val())
         } catch (error) {
             console.log(error);
             return false
@@ -61,34 +79,45 @@ export class Survice{
         }
     }
     // storage
-    async uploadFile(userId, file, postId){
+    async uploadFile(file){
         try {
-            const fileRef=storageRef(this.storage, `users/${userId}/${postId}`)
-            return await uploadBytes(fileRef, file)
+            const formData=new FormData()
+            formData.append("file", file)
+            formData.append("upload_preset", Conf.uploadPreset)
+            const response=await fetch(`https://api.cloudinary.com/v1_1/${Conf.cloudName}/image/upload`,{
+                method:"post",
+                body:formData
+            })
+            return response.json()
         } catch (error) {
             console.log(error);
             return false
         }
     }
-    async deleteFile(userId, postId){
-        try {
-            const fileRef=storageRef(this.storage, `users/${userId}/${postId}`)
-            await deleteObject(fileRef)
-            return true
-        } catch (error) {
-            console.log(error);
-            return false
-        }
-    }
-    async getFile(userId, postId){
-        try {
-            const fileRef=storageRef(this.storage, `users/${userId}/${postId}`)
-            return await getDownloadURL(fileRef)
-        } catch (error) {
-            console.log(error);
-            return false
-        }
-    }
+    // async deleteFile(file){
+    //     try {
+    //        const formData=new FormData()
+    //         formData.append("file", file)
+    //         formData.append("upload_preset", Conf.uploadPreset)
+    //         const response=await fetch(`https://api.cloudinary.com/v1_1/${Conf.cloudName}/image/delete`,{
+    //             method:"DELETE",
+    //             body:formData
+    //         })
+    //         return true
+    //     } catch (error) {
+    //         console.log(error);
+    //         return false
+    //     }
+    // }
+    // async getFile(userId, postId){
+    //     try {
+    //         const fileRef=storageRef(this.storage, `users/${userId}/${postId}`)
+    //         return await getDownloadURL(fileRef)
+    //     } catch (error) {
+    //         console.log(error);
+    //         return false
+    //     }
+    // }
 }
 const survice= new Survice()
 

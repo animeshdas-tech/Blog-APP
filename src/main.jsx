@@ -8,6 +8,14 @@ import Login from './Login.jsx'
 import { Provider } from 'react-redux'
 import store from './store.js'
 import Signup from './Signup.jsx'
+import AddPost from './AddPost.jsx'
+import AllPosts from './AllPosts.jsx'
+// import Post from './Post.jsx'
+import PostFunctions from './PostFunctions.jsx'
+import EditPost from './EditPost.jsx'
+import MyAccount from './MyAccount.jsx'
+import EditProfile from './EditProfile.jsx'
+import Logout from './Logout.jsx'
 
 const router=createBrowserRouter([
   {
@@ -29,7 +37,35 @@ const router=createBrowserRouter([
       {
         path:'/Signup',
         element:<Signup/>
-      }
+      },
+      {
+        path:'/AddPost',
+        element:<AddPost/>
+      },
+      {
+        path:'/AllPosts',
+        element:<AllPosts/>
+      },
+      {
+        path:'/post/:uid/:pid',
+        element:<PostFunctions/>
+      },
+      {
+        path:'/editPost/:uid/:pid',
+        element:<EditPost/>
+      },
+      {
+        path:'/MyAccount',
+        element:<MyAccount/>
+      },
+      {
+        path:'/editProfile',
+        element:<EditProfile/>
+      },
+      // {
+      //   path: '/Logout',
+      //   element:<Logout/>
+      // }
     ]
   }
 ])
