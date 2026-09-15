@@ -24,7 +24,7 @@ function App() {
     })
   }, [])
   return (
-    <div className='border-slate-500 border-8 rounded-2xl h-screen w-screen fixed top-0 left-0 flex flex-col overflow-hidden'>
+    <div className='border-slate-500 border-8 rounded-2xl h-full w-screen fixed top-0 left-0 flex flex-col overflow-hidden'>
       <Header />
       <div className=' overflow-auto mb-20 lg:mb-0 border-slate-300 border-y-2'>
         <div className='bg-slate-100 p-3 md:px-16 min-h-screen'>
