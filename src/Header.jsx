@@ -23,7 +23,7 @@ function Header() {
             active: true
         },
         {
-            name: 'All Posts',
+            name: 'Posts',
             slug: '/AllPosts',
             active: true
         },
