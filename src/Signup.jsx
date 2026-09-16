@@ -17,8 +17,9 @@ function Signup() {
     try {
       const sesson=await authentication.createAccount(data)
       if (sesson) {
+        const dbProfile=await authentication.setProfile({...data})
         const userData=await authentication.getUser()
-        if (userData) {
+        if (userData&&dbProfile) {
           dispatch(login(userData))
           nevigate('/')
         }
@@ -35,7 +36,7 @@ function Signup() {
         </h2>
         <p>
           Alrady have an account
-          <Link to={`./login`}>
+          <Link to={`/login`}>
             Login
           </Link>
         </p>
@@ -45,20 +46,20 @@ function Signup() {
         <form onSubmit={handleSubmit(signup)}>
           <div>
             <Input
-              lable='fullname'
+              lable='fullname: '
               placeHolder='Enter your fullname'
-              {...register("name",{required:true})}
+              {...register("userName",{required:true})}
             />
             <Input
-              lable='email'
+              lable='email: '
               type='email'
               placeHolder='Enter your email'
               {...register("email",{required:true,validate:{matchpatern:(value)=>/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value)||"Email address must be a valid adderss"}})}
             />
             <Input
-              lable='password'
+              lable='password: '
               type='password'
-              placeHolder='Enter your password'
+              placeHolder='Create password'
               {...register("password",{required:true})}
             />
             <Button type='submit'>

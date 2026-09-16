@@ -40,8 +40,10 @@ export class Authentication{
         })
     }
     // Profile
-    async setProfile({userName, imageUrl}){
+    async setProfile({userName, imageUrl}){console.log(userName);
         try {
+            
+            
            await updateProfile(this.auth.currentUser,{
             displayName:userName,
             photoURL:imageUrl

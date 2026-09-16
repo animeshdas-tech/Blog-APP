@@ -35,7 +35,7 @@ function Login() {
         </h2>
         <p>
            Don&apos;t have any account?&nbsp;
-           <Link to={`./Signup`}>
+           <Link to={`/Signup`}>
            Signup
            </Link>
         </p>
@@ -49,7 +49,7 @@ function Login() {
               {...register("email", {required:true, validate:{matchPatern:(value)=>/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value)||"Email address must be a valid address"}})}
             />
             <Input
-              lable='password'
+              lable='password :'
               type='password'
               placeHolder='Enter your password'
               {...register("password",{required:true})}

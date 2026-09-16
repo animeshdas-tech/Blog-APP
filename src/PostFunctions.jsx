@@ -47,7 +47,7 @@ function PostFunctions() {
                 Edit
               </Button>
               </Link>
-              <Button onClick={deletePost} className='bg-slate-300 lg:hover:bg-red-200  text-red-700 hover:text-red-700'>
+              <Button onClick={deletePost} className='bg-red-200 hover:bg-red-200  text-red-700 hover:text-red-700'>
                 Delete
               </Button>
             </div>

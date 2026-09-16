@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from './Button'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function LoginLayout() {
     const nevigate=useNavigate()
@@ -24,9 +24,9 @@ function LoginLayout() {
             <div className='flex justify-center items-center h-fit md:hidden'>
                 Don't have an account?
                 <div className=''>
-                    <Button className='' onClick={()=>nevigate('/Signup')}>
+                    <Link to={'/Signup'} className='px-2'>
                         Signup
-                    </Button>
+                    </Link>
                 </div>
             </div>
         </div>

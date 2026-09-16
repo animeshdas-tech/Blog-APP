@@ -8,8 +8,6 @@ import Button from './Button'
 function Header() {
     const authStatus = useSelector((state) => state.Auth.status)
     const userData = useSelector((state) => state.Auth.userData)
-    console.log(userData);
-    
     const nevigate = useNavigate()
     const nevitems = [
         {
@@ -35,10 +33,10 @@ function Header() {
     ]
     return (
         <header className='md:py-2'>
-            <nav className='bg-white w-11/12 mx-auto flex justify-between'>
+            <nav className='bg-white w-11/12 mx-auto flex justify-between items-center'>
                 <div className='flex my-auto md:w-fit'>
                     <div className=''>
-                        <img src='/mindScroll.svg' alt="Logo" className="lg:size-16 md:size-12 size-10 pr-1" />
+                        <img src='/mindScroll.svg' alt="Logo" className="lg:size-16 size-12 pr-1" />
                     </div>
                     <div className='font-serif font-medium text-green-900 lg:text-5xl md:text-4xl border-black border-l-2 pl-1 text-3xl my-auto'>
                         MindScroll
@@ -59,24 +57,24 @@ function Header() {
                         </div>
                     </div>
                 </ul>
-                <div className='my-auto h-20 md:h-fit'>
+                <div className='flex items-center h-20 md:h-fit'>
                     {
-                        authStatus ? <div className='h-full flex items-center'>
+                        authStatus ? <div className='flex items-center'>
                             <div className='md:inline font-serif text-green-900 hidden font-bold'>
-                                Wellcome, {userData?.displayName}
+                                Wellcome, {userData.displayName?.indexOf(" ")>0 ? userData.displayName.slice(0, userData.displayName.indexOf(" ")) : userData.displayName}
                             </div>
                                {
                                     userData.photoURL ? <img src={userData.photoURL} alt="Profile Picture" className='md:inline hidden md:size-16 rounded-full mx-2 object-cover' />  
                                     : <div className='md:inline-flex items-center justify-center hidden font-serif font-medium text-green-100 text-5xl size-16 rounded-full bg-green-900 mx-2'>
-                                        {userData.displayName.charAt(0)}
+                                        {userData.displayName?.charAt(0)}
                                     </div>
                                 } 
                             <Logout />
-                        </div> : <div className='h-full'>
+                        </div> : <div className='flex items-center'>
                             <div className='md:inline font-serif text-green-900 hidden font-bold mr-2'>
                                 Wellcome to MindScroll
                             </div>
-                            <Button className='bg-green-700 md:hover:bg-green-700 text-green-100 border-4 md:rounded-lg rounded-3xl border-white md:border-none' onClick={() => nevigate('/Login')}>
+                            <Button className='bg-green-700 text-green-100  md:rounded-lg rounded-3xl' onClick={() => nevigate('/Login')}>
                                 Login
                             </Button>
                         </div>
