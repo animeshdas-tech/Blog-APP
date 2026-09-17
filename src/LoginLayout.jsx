@@ -17,14 +17,14 @@ function LoginLayout() {
                 Discover in-depth analyses, thoughtful essays & professional perspectives. Please login to unlock our full archive of editorial content.
             </div>
             <div className=''>
-                <Button className='bg-green-700 md:hover:bg-green-700 text-green-100 h-fit ' onClick={()=>nevigate('/Login')}>
+                <Button className='bg-green-700 md:hover:bg-green-700 text-green-100 h-fit mb-4' onClick={()=>nevigate('/Login')}>
                     LOGIN TO ACCESS
                 </Button>
             </div>
             <div className='flex justify-center items-center h-fit md:hidden'>
                 Don't have an account?
                 <div className=''>
-                    <Link to={'/Signup'} className='px-2'>
+                    <Link to={'/Signup'} className='px-2 font-bold text-green-900 hover:underline'>
                         Signup
                     </Link>
                 </div>

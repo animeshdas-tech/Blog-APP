@@ -9,7 +9,7 @@ const Input=forwardRef(function({lable, type, className, ...props},ref){
           {lable}
         </lable>
       }
-      <input type={type} id={id} ref={ref} {...props} className={`${className}`}/>
+      <input type={type} id={id} ref={ref} {...props} className={`h-10 w-full bg-slate-100 px-4 rounded-lg border-2 border-slate-300 ${className}`}/>
     </div>
   )
 })
