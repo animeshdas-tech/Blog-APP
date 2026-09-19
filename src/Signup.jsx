@@ -95,7 +95,7 @@ function Signup() {
                 Privacy Policy.
               </Link>
             </div>
-            <Button type='submit' className='bg-green-700 md:hover:bg-green-700 text-green-100 h-fit mb-4 mx-auto'>
+            <Button type='submit' className='bg-green-700 md:hover:bg-green-700 text-green-100 h-fit mb-4 mx-auto w-full'>
               Complete Registration
             </Button>
             <div>
