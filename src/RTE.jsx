@@ -2,7 +2,7 @@ import React from 'react'
 import {Controller} from 'react-hook-form'
 import {Editor} from '@tinymce/tinymce-react'
 
-export default function RTE({name, lable, control, defaultValue=""}) {
+export default function RTE({name, lable, control, defaultValue="", placeholder, className}) {
   return (
     <div>
         {
@@ -16,6 +16,7 @@ export default function RTE({name, lable, control, defaultValue=""}) {
                      apiKey='jcmq1rv1df9hiflrnrgrb9kqyuef5n3mpoxn2og5jlj3m6ks'
                       initialValue={defaultValue}
                     init={{
+                        placeholder:placeholder,
                         initialValue:defaultValue,
                         height: 500,
                         menubar: false,
@@ -28,7 +29,7 @@ export default function RTE({name, lable, control, defaultValue=""}) {
                             'bold italic forecolor | alignleft aligncenter ' +
                             'alignright alignjustify | bullist numlist outdent indent | ' +
                             'removeformat | help',
-                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; }' + '@media(min-width: 1024px){body{ width:70%; margin-left:auto; margin-right:auto }}'
                     }}
                     onEditorChange={onChange}
                 />

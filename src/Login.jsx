@@ -67,7 +67,7 @@ function Login() {
             </div>
             <Input
               type='email'
-              placeHolder='Enter your email'
+              placeHolder='you@domain.com'
               {...register("email", { required: true, validate: { matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || "Email address must be a valid address" } })}
             />
           </div>
@@ -77,7 +77,7 @@ function Login() {
             </div>
             <Input
               type='password'
-              placeHolder='Enter your password'
+              placeHolder='Password'
               {...register("password", { required: true })}
             />
           </div>
