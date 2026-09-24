@@ -8,12 +8,13 @@ export default function RTE({name, lable, control, defaultValue="", placeholder,
         {
             lable && <label>{lable}</label>
         }
+        {/* jcmq1rv1df9hiflrnrgrb9kqyuef5n3mpoxn2og5jlj3m6ks */}
         <Controller
             name={name || 'content'}
             control={control}
             render={({field:{onChange}})=>(
                 <Editor
-                     apiKey='jcmq1rv1df9hiflrnrgrb9kqyuef5n3mpoxn2og5jlj3m6ks'
+                     apiKey='oe7m43wvszle0v6edlggi5tk8ns2oruch2hyqi3ecn4js26m'
                       initialValue={defaultValue}
                     init={{
                         placeholder:placeholder,
