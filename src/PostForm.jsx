@@ -53,7 +53,7 @@ export default function PostForm({ post }) {
     return ""
   }, [])
   const imageChange = (e) => {
-    if (e.target.files) {
+    if (e.target.files[0]?.size <= 10485760) {
       setLoadImage(URL.createObjectURL(e.target.files[0]))
     }
   }
