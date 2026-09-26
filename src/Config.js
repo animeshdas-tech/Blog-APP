@@ -80,7 +80,11 @@ export class Survice{
     }
     // storage
     async uploadFile(file){
+        
+        
         try {
+            console.log(file);
+            
             const formData=new FormData()
             formData.append("file", file)
             formData.append("upload_preset", Conf.uploadPreset)
