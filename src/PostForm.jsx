@@ -79,11 +79,8 @@ export default function PostForm({ post }) {
               <div className=' bg-slate-300 flex items-center rounded md:bg-transparent'>
                 <div className='size-2 bg-green-900 rounded-full mx-2'></div>
                 <div className='pr-2'>
-                  NEW DRAFT
+                  NEW DRAFT CREATED
                 </div>
-              </div>
-              <div className='px-2'>
-                Ready to compose
               </div>
             </div>
           }
