@@ -83,8 +83,6 @@ export class Survice{
         
         
         try {
-            console.log(file);
-            
             const formData=new FormData()
             formData.append("file", file)
             formData.append("upload_preset", Conf.uploadPreset)

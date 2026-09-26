@@ -107,7 +107,7 @@ export default function PostForm({ post }) {
           </div>
           {
             post || loadImage ? <div className='bg-cover bg-center md:bg-center rounded-xl my-4 h-60 md:h-96 grid place-content-end md:flex md:items-center md:justify-center' style={{ backgroundImage: `url(${loadImage || post.featuredimage})` }}>
-              <label htmlFor="image" className="cursor-pointer px-4 py-4 rounded-lg bg-green-700 font-bold font-serif text-green-100 m-3 md:hidden">
+              <label htmlFor="pic" className="cursor-pointer px-4 py-4 rounded-lg bg-green-700 font-bold font-serif text-green-100 m-3 md:hidden">
                 Replace
               </label>
               <div className='hidden md:inline-block bg-slate-100 rounded-xl p-4 pb-8'>
@@ -117,7 +117,7 @@ export default function PostForm({ post }) {
                 <div className='pb-6'>
                   JPEG, PNG, or WebP(16.9 recommended)
                 </div>
-                <label htmlFor="image" className="cursor-pointer px-4 py-4 rounded-lg bg-green-700 font-bold font-serif text-green-100">
+                <label htmlFor="pic" className="cursor-pointer px-4 py-4 rounded-lg bg-green-700 font-bold font-serif text-green-100">
                   Browse File
                 </label>
               </div>
@@ -129,7 +129,7 @@ export default function PostForm({ post }) {
                 <div className='pb-6'>
                   JPEG, PNG, or WebP(16.9 recommended)
                 </div>
-                <label htmlFor="image" className="cursor-pointer px-4 py-4 rounded-lg bg-green-700 font-bold font-serif text-green-100">
+                <label htmlFor="pic" className="cursor-pointer px-4 py-4 rounded-lg bg-green-700 font-bold font-serif text-green-100">
                   Browse File
                 </label>
               </div>
@@ -137,10 +137,10 @@ export default function PostForm({ post }) {
           }
           <Input className='hidden'
             type='file'
-            id='image'
+            id='pic'
             accept='image/jpg, image/png, image/jpeg, image/gif'
-            {...register('image', { required: !post })}
-            onChange={(e) => imageChange(e)}
+            {...register('image', { required: !post, onChange:(e) => imageChange(e)})}
+            
           />
         </div>
         {/* <Input
