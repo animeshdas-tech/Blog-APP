@@ -12,16 +12,17 @@ export default function PostForm({ post }) {
   const { register, setValue, handleSubmit, getValues, control, watch } = useForm({
     defaultValues: {
       title: post?.title || '',
-      content: post?.content || '',
-      slug: post?.slug || ''
+      content: post?.content || ''
+      // slug: post?.slug || ''
     }
   })
   const userData = useSelector((state) => state.Auth.userData)?.uid
   const [loadImage, setLoadImage] = useState(null)
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
   const submit = async (data) => {
     if (post) {
-      const file = data.image[0] ? await survice.uploadFile(data.image[0]) : null
+      const file = loadImage && await survice.uploadFile(loadImage)
       delete data.image
       if (file) {
         data.featuredimage = file.secure_url
@@ -31,7 +32,7 @@ export default function PostForm({ post }) {
         navigate(`/post/${post.uid}/${post.id}`)
       }
     } else {
-      const file = await survice.uploadFile(data.image[0])
+      const file = loadImage && await survice.uploadFile(loadImage)
       delete data.image
       if (file) {
         data.featuredimage = file.secure_url
@@ -42,21 +43,25 @@ export default function PostForm({ post }) {
       }
     }
   }
-  const slugTransform = useCallback((value) => {
-    if (value && typeof value === "string")
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
-
-    return ""
-  }, [])
   const imageChange = (e) => {
     if (e.target.files[0]?.size <= 10485760) {
-      setLoadImage(URL.createObjectURL(e.target.files[0]))
+      setLoadImage(e.target.files[0])
+      setError(null)
+    } else {
+      setError('Image size is too large. Please select an image smaller than 10 MB.')
     }
   }
+  // const slugTransform = useCallback((value) => {
+  //   if (value && typeof value === "string")
+  //     return value
+  //       .trim()
+  //       .toLowerCase()
+  //       .replace(/[^a-zA-Z\d\s]+/g, "-")
+  //       .replace(/\s/g, "-");
+
+  //   return ""
+  // }, [])
+  
   // useEffect(() => {
   //   const subscribtion = watch((value, { name }) => {
   //     if (name === "title") {
@@ -106,7 +111,7 @@ export default function PostForm({ post }) {
             MONOGRAPH COVER IMAGE
           </div>
           {
-            post || loadImage ? <div className='bg-cover bg-center md:bg-center rounded-xl my-4 h-60 md:h-96 grid place-content-end md:flex md:items-center md:justify-center' style={{ backgroundImage: `url(${loadImage || post.featuredimage})` }}>
+            post || loadImage ? <div className='bg-cover bg-center md:bg-center rounded-xl my-4 h-60 md:h-96 grid place-content-end md:flex md:items-center md:justify-center' style={{ backgroundImage: `url(${loadImage&&URL.createObjectURL(loadImage) || post.featuredimage})` }}>
               <label htmlFor="pic" className="cursor-pointer px-4 py-4 rounded-lg bg-green-700 font-bold font-serif text-green-100 m-3 md:hidden">
                 Replace
               </label>
@@ -140,8 +145,12 @@ export default function PostForm({ post }) {
             id='pic'
             accept='image/jpg, image/png, image/jpeg, image/gif'
             {...register('image', { required: !post, onChange:(e) => imageChange(e)})}
-            
           />
+          { 
+          error && <div className='w-full rounded text-red-700 px-1 bg-red-200 md:w-fit mx-auto'>
+            {error}
+          </div>
+          }
         </div>
         {/* <Input
           lable='Slug'

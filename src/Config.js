@@ -17,11 +17,10 @@ export class Survice{
     //     const postRef=DBRef(this.database, `users/${userId}/posts`)
     //     return push(postRef)
     // }
-    async createPost(userId,{slug, title, content, featuredimage}){
+    async createPost(userId,{title, content, featuredimage}){
         try {
             const postRef=push(DBRef(this.database, `users/${userId}/posts`))
             await set(postRef,{
-                slug:slug,
                 title:title,
                 content:content,
                 featuredimage:featuredimage,
