@@ -69,7 +69,7 @@ function Header() {
                                         {userData.displayName?.charAt(0)}
                                     </div>
                                 } 
-                            <Logout />
+                            <Button className=' bg-red-700 text-red-100 hover:bg-red-200 hover:text-red-700' onClick={()=>nevigate('/Logout')}>Logout</Button>
                         </div> : <div className='flex items-center'>
                             <div className='md:inline font-serif text-green-900 hidden font-bold mr-2'>
                                 Wellcome to MindScroll

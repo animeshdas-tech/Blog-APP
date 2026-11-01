@@ -62,10 +62,10 @@ const router=createBrowserRouter([
         path:'/editProfile',
         element:<EditProfile/>
       },
-      // {
-      //   path: '/Logout',
-      //   element:<Logout/>
-      // }
+      {
+        path: '/Logout',
+        element:<Logout/>
+      }
     ]
   }
 ])

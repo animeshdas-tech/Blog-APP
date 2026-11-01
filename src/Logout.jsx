@@ -3,15 +3,17 @@ import { useDispatch } from 'react-redux'
 import authentication from './Auth'
 import { logout } from './AuthSlice'
 import Button from './Button'
+import { useNavigate } from 'react-router-dom'
 
 function Logout() {
   const dispatch = useDispatch()
-   const logoutHandeler=()=>{
-        authentication.signout().then(()=>{
+  const navigate=useNavigate()
+  authentication.signout().then(()=>{
             dispatch(logout())
-        })}
+            navigate('/')
+          })
   return (
-    <Button className=' bg-red-700 text-red-100 hover:bg-red-200 hover:text-red-700' onClick={logoutHandeler}>Logout</Button>
+    <></>
   )
 }
 
