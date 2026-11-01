@@ -45,7 +45,7 @@ function Profile({ displayName, email, photoURL }) {
                         </div>
                     </div>
                     <div>
-                        <AllPosts className='lg:grid-cols-2' />
+                        <AllPosts colsNo='2'/>
                     </div>
                 </div>
                 <div className='lg:w-2/6'>
