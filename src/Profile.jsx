@@ -13,7 +13,12 @@ function Profile({ displayName, email, photoURL }) {
             </div>
             <Container className='bg-white rounded-xl p-5 my-6 lg:flex lg:justify-between'>
                 <div className='lg:flex lg:gap-5'>
-                    <img src={photoURL} alt="No Profile Photo" className='size-20 md:size-32 rounded-lg object-cover' />
+                    {
+                        photoURL ? <img src={photoURL} alt="No Profile Photo" className='size-20 md:size-32 rounded-lg object-cover' />
+                            : <div className='text-center font-serif font-medium text-green-100 text-7xl md:text-9xl size-20 md:size-32 rounded-lg bg-green-900'>
+                                {displayName?.charAt(0)}
+                            </div>
+                    }
                     <div className=''>
                         <div className='font-serif font-medium text-3xl my-2'>
                             {displayName}
@@ -36,17 +41,7 @@ function Profile({ displayName, email, photoURL }) {
             </div>
             <div className='my-3 lg:flex lg:justify-between'>
                 <div className='lg:w-3/5'>
-                    <div>
-                        <div className='font-serif font-medium text-3xl my-2'>
-                            Published Monographs
-                        </div>
-                        <div>
-                            Peer-archived critical works
-                        </div>
-                    </div>
-                    <div>
-                        <AllPosts colsNo='2'/>
-                    </div>
+                    <AllPosts colsNo='2'/>
                 </div>
                 <div className='lg:w-2/6'>
                     <div className='bg-white rounded-xl p-5 my-6'>
